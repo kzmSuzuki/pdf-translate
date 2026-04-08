@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>英語論文PDF 日本語翻訳ビューア</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>英語論文PDF 日本語翻訳ビューア / PDF再生成アプリ</h1>
+      <p>
+        英語論文PDFをブラウザ内で解析し、日本語へ翻訳して元レイアウトに近い形で表示・PDF出力します。
+      </p>
+      <p class="small-note">Chrome 最新版 / 10MBまで / 20ページ目安 / スキャン画像PDF非対応</p>
+    </header>
+
+    <main class="app-main">
+      <section class="card" id="upload-section">
+        <h2>1. PDFアップロード</h2>
+        <input id="file-input" type="file" accept=".pdf,application/pdf" />
+        <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="PDFドラッグ&ドロップエリア">
+          ここにPDFをドラッグ＆ドロップ
+        </div>
+        <div class="controls">
+          <button id="start-btn" disabled>処理開始</button>
+          <button id="restore-btn">前回セッション復元</button>
+          <button id="reset-btn">リセット</button>
+        </div>
+      </section>
+
+      <section class="card" id="processing-section">
+        <h2>2. 処理状況</h2>
+        <p id="status-text">待機中</p>
+        <progress id="progress" value="0" max="100"></progress>
+        <p id="progress-detail"></p>
+      </section>
+
+      <section class="card" id="result-section">
+        <h2>3. 結果表示</h2>
+        <div class="tab-row">
+          <button id="tab-source" class="tab active">原文</button>
+          <button id="tab-translated" class="tab">翻訳</button>
+        </div>
+        <div class="result-layout">
+          <aside>
+            <h3>ページ</h3>
+            <ul id="page-list"></ul>
+          </aside>
+          <div>
+            <div id="preview" class="preview"></div>
+            <div class="controls">
+              <button id="download-btn" disabled>翻訳PDFをダウンロード</button>
+              <button id="reprocess-btn" disabled>再処理</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="messages-section">
+        <h2>警告 / エラー</h2>
+        <ul id="messages"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
